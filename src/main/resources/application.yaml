@@ -7,19 +7,21 @@ spring:
     # password: test1234
 
     # Railway용
-    url: ${MYSQL_URL}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: ${MYSQLUSER}
+    password: ${MYSQLPASSWORD}
 
 
-    jpa:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    show-sql: true
+
+    properties:
       hibernate:
-        ddl-auto: update
-
-      show-sql: true
-
-      properties:
-        hibernate:
-          format_sql: true
+        format_sql: true
 
 
-    thymeleaf:
-      cache: false
+  thymeleaf:
+    cache: false
