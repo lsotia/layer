@@ -21,11 +21,12 @@ public class SecurityConfig {
                         // 관리자만
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 
-                        // 누구나
+                        // ✅ 수정 후 코드
                         .requestMatchers(
                                 "/",
                                 "/login",
-                                "/member/signup",
+                                "/member/**",     // 👈 [수정 1] /member/하위의 모든 경로(중복확인 등) 허용
+                                "/api/**",        // 👈 [추가 2] 혹시 fetch 경로가 /api/ 로 시작할 경우 대비
                                 "/css/**",
                                 "/js/**",
                                 "/images/**",
