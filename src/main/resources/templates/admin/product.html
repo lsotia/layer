@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>상품관리</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h1>상품관리</h1>
+
+<a th:href="@{/admin/product/new}">
+    상품등록
+</a>
+
+<table border="1">
+
+    <tr>
+
+        <th>번호</th>
+
+        <th>상품명</th>
+
+        <th>브랜드</th>
+
+        <th>가격</th>
+
+        <th>관리</th>
+
+    </tr>
+
+    <tr th:each="product : ${products}">
+
+        <td th:text="${product.id}"></td>
+
+        <td th:text="${product.name}"></td>
+
+        <td th:text="${product.brand}"></td>
+
+        <td th:text="${product.price}"></td>
+
+        <td>
+
+            <a th:href="@{/admin/product/edit/{id}(id=${product.id})}">수정</a>
+
+            <a th:href="@{/admin/product/delete/{id}(id=${product.id})}">삭제</a>
+
+        </td>
+
+    </tr>
+
+</table>
+
+</body>
+
+</html>

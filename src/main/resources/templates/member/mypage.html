@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Page</title>
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<h1>My Page</h1>
+
+<hr>
+
+<h2>회원 정보</h2>
+
+<p>
+    아이디 :
+    <span th:text="${member.username}"></span>
+</p>
+
+<p>
+    이메일 :
+    <span th:text="${member.email}"></span>
+</p>
+
+<hr>
+
+<h2>주문 내역</h2>
+
+<div th:if="${#lists.isEmpty(orders)}">
+
+    주문 내역이 없습니다.
+
+</div>
+
+<div th:each="order : ${orders}">
+
+    <p>
+        주문번호 :
+        <span th:text="${order.id}"></span>
+    </p>
+
+    <p>
+        주문일 :
+        <span th:text="${order.orderDate}"></span>
+    </p>
+
+    <p>
+        총 금액 :
+        <span th:text="${order.totalPrice}"></span> 원
+    </p>
+
+    <hr>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>로그인</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+
+<header th:fragment="header">
+
+    <nav>
+
+        <div class="logo">
+            <a th:href="@{/}" class="logo-link">
+                LAYER
+            </a>
+        </div>
+
+        <ul>
+
+            <li>
+                <a th:href="@{/}">
+                    Shop
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/brands}">
+                    Brands
+                </a>
+            </li>
+
+            <li>
+                <a th:href="@{/}">
+                    New
+                </a>
+            </li>
+
+            <!-- 비로그인 -->
+
+            <li sec:authorize="isAnonymous()">
+                <a th:href="@{/member/signup}">
+                    Sign Up
+                </a>
+            </li>
+
+            <li sec:authorize="isAnonymous()">
+                <a th:href="@{/login}">
+                    Login
+                </a>
+            </li>
+
+            <!-- 로그인 -->
+
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/cart}">
+                    Cart
+                </a>
+            </li>
+
+            <li sec:authorize="isAuthenticated()">
+                <a th:href="@{/member/mypage}">
+                    My Page
+                </a>
+            </li>
+
+            <li sec:authorize="isAuthenticated()">
+
+                <form th:action="@{/logout}"
+                      method="post"
+                      class="logout-form">
+
+                    <button type="submit"
+                            class="logout-btn">
+
+                        Logout
+
+                    </button>
+
+                </form>
+
+            </li>
+
+            <form th:action="@{/search}" method="get">
+
+                <input
+                        type="text"
+                        name="keyword"
+                        placeholder="검색">
+
+                <button type="submit">
+
+                    검색
+
+                </button>
+
+            </form>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+</body>
+</html>

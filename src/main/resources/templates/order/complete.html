@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>주문완료</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<h1>주문이 완료되었습니다.</h1>
+
+<p>
+    주문해주셔서 감사합니다.
+</p>
+
+<a th:href="@{/}">
+    메인으로
+</a>
+
+<a th:href="@{/member/mypage}">
+    주문내역 보기
+</a>
+
+</body>
+</html>

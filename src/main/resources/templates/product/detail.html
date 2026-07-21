@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title th:text="${product.name}">상품 상세</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<div th:replace="~{fragments/header :: header}"></div>
+<body>
+
+<header>
+
+    <nav>
+
+        <div class="logo">
+            <a th:href="@{/}" class="logo-link">
+                LAYER
+            </a>
+        </div>
+
+        <ul>
+
+            <li><a href="/">HOME</a></li>
+
+            <li>SHOP</li>
+
+            <li>LOGIN</li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+<section class="detail-container">
+
+    <div class="detail-image">
+
+        <img th:src="@{/images/{img}(img=${product.image})}"
+             th:alt="${product.name}">
+
+    </div>
+
+    <div class="detail-info">
+
+        <h1 th:text="${product.name}"></h1>
+
+        <p class="brand"
+           th:text="${product.brand}"></p>
+
+        <h2 class="price">
+            ₩ <span th:text="${product.price}"></span>
+        </h2>
+
+        <hr>
+
+        <p class="description"
+           th:text="${product.description}"></p>
+
+        <div class="detail-buttons">
+
+            <form th:action="@{/cart/add/{id}(id=${product.id})}" method="post">
+
+            <button type="submit" class="cart-btn">
+                장바구니
+            </button>
+
+            </form>
+
+            <button class="buy-btn">
+                구매하기
+            </button>
+
+        </div>
+
+
+        <br>
+
+        <a th:href="@{/admin/product/edit/{id}(id=${product.id})}">
+            상품 수정
+        </a>
+
+        <br><br>
+
+        <a th:href="@{/admin/product/delete/{id}(id=${product.id})}">
+            상품 삭제
+        </a>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>

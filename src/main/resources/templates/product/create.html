@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>상품등록</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<h1>상품 등록</h1>
+
+<form action="/admin/product/new" method="post">
+
+    <p>
+        상품명
+    </p>
+
+    <input type="text" name="name">
+
+    <br><br>
+
+    <p>
+        브랜드
+    </p>
+
+    <input type="text" name="brand">
+
+    <br><br>
+
+    <p>
+        가격
+    </p>
+
+    <input type="text" name="price">
+
+    <br><br>
+
+    <p>
+        이미지
+    </p>
+
+    <input type="text" name="image">
+
+    <br><br>
+
+    <p>
+        설명
+    </p>
+
+    <textarea name="description"></textarea>
+
+    <br><br>
+
+    <button>
+
+        등록하기
+
+    </button>
+
+</form>
+
+</body>
+
+</html>

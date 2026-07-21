@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>회원관리</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h1>회원관리</h1>
+
+<table border="1">
+
+    <tr>
+
+        <th>ID</th>
+
+        <th>아이디</th>
+
+        <th>이메일</th>
+
+        <th>권한</th>
+
+    </tr>
+
+    <tr th:each="member : ${members}">
+
+        <td th:text="${member.id}"></td>
+
+        <td th:text="${member.username}"></td>
+
+        <td th:text="${member.email}"></td>
+
+        <td th:text="${member.role}"></td>
+
+    </tr>
+
+</table>
+
+</body>
+
+</html>

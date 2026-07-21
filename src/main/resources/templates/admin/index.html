@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>관리자 페이지</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h1>관리자 페이지</h1>
+
+<hr>
+
+<h3>관리 메뉴</h3>
+
+<ul>
+
+    <li>
+        <a th:href="@{/admin/product}">
+            상품 관리
+        </a>
+    </li>
+
+    <li>
+        <a th:href="@{/admin/member}">
+            회원 관리
+        </a>
+    </li>
+
+    <li>
+        <a th:href="@{/admin/order}">
+            주문 관리
+        </a>
+    </li>
+
+</ul>
+
+</body>
+</html>

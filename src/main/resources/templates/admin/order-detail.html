@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>주문상세</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<h1>주문 상세</h1>
+
+<p>
+    주문번호 :
+    <span th:text="${order.id}"></span>
+</p>
+
+<p>
+    주문자 :
+    <span th:text="${order.member.username}"></span>
+</p>
+
+<p>
+    주문일 :
+    <span th:text="${order.orderDate}"></span>
+</p>
+
+<p>
+    주문상태 :
+    <span th:text="${order.status}"></span>
+</p>
+
+<form th:action="@{/admin/order/{id}/status(id=${order.id})}"
+      method="post">
+
+    <select name="status">
+
+        <option value="ORDER">ORDER</option>
+
+        <option value="DELIVERY">DELIVERY</option>
+
+        <option value="COMPLETE">COMPLETE</option>
+
+    </select>
+
+    <button type="submit">
+
+        변경
+
+    </button>
+
+</form>
+
+<p>
+    총금액 :
+    <span th:text="${order.totalPrice}"></span> 원
+</p>
+
+<h2>주문상품</h2>
+
+<table border="1">
+
+    <tr>
+
+        <th>상품</th>
+
+        <th>수량</th>
+
+        <th>가격</th>
+
+    </tr>
+
+    <tr th:each="item : ${order.orderItems}">
+
+        <td th:text="${item.product.name}"></td>
+
+        <td th:text="${item.count}"></td>
+
+        <td th:text="${item.price}"></td>
+
+    </tr>
+
+</table>
+
+</body>
+
+</html>

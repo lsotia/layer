@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>LAYER</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+<div th:replace="~{fragments/header :: header}"></div>
+<section class="hero">
+
+    <h1>
+
+        Premium Select Shop
+
+    </h1>
+
+    <p>
+
+        Curated Fashion For Everyday
+
+    </p>
+
+    <button>
+
+        SHOP NOW
+
+    </button>
+
+</section>
+
+<section class="products">
+
+    <h2>
+        NEW ARRIVALS
+    </h2>
+
+
+    <div class="product-grid">
+
+
+
+        <div class="product-card"
+             th:each="product : ${products}">
+
+            <a th:href="@{/product/{id}(id=${product.id})}"
+               class="product-link">
+
+            <div class="product-image">
+
+                <img th:src="@{/images/{img}(img=${product.image})}"
+                     th:alt="${product.name}">
+
+            </div>
+
+            <h3 th:text="${product.name}">
+                상품명
+            </h3>
+
+            <p th:text="${product.brand}">
+                브랜드
+            </p>
+
+            <strong th:text="${product.price}">
+                가격
+            </strong>
+            </a>
+        </div>
+
+
+    </div>
+
+
+</section>
+
+</body>
+
+</html>
