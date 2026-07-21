@@ -1,5 +1,10 @@
 server:
   port: ${PORT:8080}
+  forward-headers-strategy: native
+  tomcat:
+    remoteip:
+      remote-ip-header: X-Forwarded-For
+      protocol-header: X-Forwarded-Proto
 
 spring:
   datasource:
