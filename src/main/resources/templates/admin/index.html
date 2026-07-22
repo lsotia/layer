@@ -1,44 +1,74 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
 <head>
 
     <meta charset="UTF-8">
-    <title>관리자 페이지</title>
+
+    <title>관리자 대시보드</title>
 
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
-<body>
 
-<div th:replace="~{fragments/header :: header}"></div>
+<body class="admin-page">
 
-<h1>관리자 페이지</h1>
+<div th:replace="~{fragments/admin-header :: header}"></div>
 
-<hr>
+<div class="admin-container">
 
-<h3>관리 메뉴</h3>
+    <div class="admin-title">
 
-<ul>
+        <h1>관리자 대시보드</h1>
 
-    <li>
-        <a th:href="@{/admin/product}">
-            상품 관리
+        <p>
+            LAYER 관리 시스템
+        </p>
+
+    </div>
+
+    <div class="admin-grid">
+
+        <a th:href="@{/admin/product}" class="admin-card">
+
+            <div class="icon">📦</div>
+
+            <h2>상품 관리</h2>
+
+            <p>상품 등록 / 수정 / 삭제</p>
+
+            <span>관리하기 →</span>
+
         </a>
-    </li>
 
-    <li>
-        <a th:href="@{/admin/member}">
-            회원 관리
+        <a th:href="@{/admin/member}" class="admin-card">
+
+            <div class="icon">👥</div>
+
+            <h2>회원 관리</h2>
+
+            <p>회원 조회 및 삭제</p>
+
+            <span>관리하기 →</span>
+
         </a>
-    </li>
 
-    <li>
-        <a th:href="@{/admin/order}">
-            주문 관리
+        <a th:href="@{/admin/order}" class="admin-card">
+
+            <div class="icon">🛒</div>
+
+            <h2>주문 관리</h2>
+
+            <p>주문 상태 변경</p>
+
+            <span>관리하기 →</span>
+
         </a>
-    </li>
 
-</ul>
+    </div>
+
+</div>
 
 </body>
+
 </html>

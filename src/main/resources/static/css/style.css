@@ -312,3 +312,176 @@ nav ul li a:hover{
     margin:15px 0;
     font-weight:bold;
 }
+
+
+
+/* ===========================
+   ADMIN HEADER
+=========================== */
+
+.admin-header{
+
+    background:white;
+
+    border-bottom:1px solid #eee;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:18px 60px;
+
+}
+
+.admin-logo a{
+
+    font-size:28px;
+
+    font-weight:700;
+
+    color:#111;
+
+    text-decoration:none;
+
+}
+
+.admin-header nav{
+
+    display:flex;
+
+    gap:35px;
+
+}
+
+.admin-header nav a{
+
+    color:#555;
+
+    text-decoration:none;
+
+    font-weight:600;
+
+    transition:.2s;
+
+}
+
+.admin-header nav a:hover{
+
+    color:#2563eb;
+
+}
+
+/* ===========================
+   ADMIN DASHBOARD
+=========================== */
+
+.admin-page{
+    background:#f5f7fb;
+    min-height:100vh;
+}
+
+.admin-container{
+
+    max-width:1200px;
+
+    margin:60px auto;
+
+    padding:20px;
+
+}
+
+.admin-title{
+
+    text-align:center;
+
+    margin-bottom:50px;
+
+}
+
+.admin-title h1{
+
+    font-size:40px;
+
+    font-weight:700;
+
+    color:#222;
+
+}
+
+.admin-title p{
+
+    color:#777;
+
+    margin-top:10px;
+
+}
+
+.admin-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:30px;
+
+}
+
+.admin-card{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:40px;
+
+    text-decoration:none;
+
+    color:#222;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+
+.admin-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 35px rgba(37,99,235,.15);
+
+}
+
+.admin-card .icon{
+
+    font-size:50px;
+
+    margin-bottom:20px;
+
+}
+
+.admin-card h2{
+
+    font-size:28px;
+
+    margin-bottom:12px;
+
+}
+
+.admin-card p{
+
+    color:#777;
+
+    margin-bottom:30px;
+
+}
+
+.admin-card span{
+
+    color:#2563eb;
+
+    font-weight:700;
+
+}
