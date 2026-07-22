@@ -14,14 +14,17 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
+
                 .csrf(csrf -> csrf.disable())
+
+
 
                 .authorizeHttpRequests(auth -> auth
 
                         // 관리자만
                         .requestMatchers("/admin/**").hasRole("ADMIN")
 
-                        // ✅ 수정 후 코드
+
                         .requestMatchers(
                                 "/",
                                 "/login",
@@ -42,7 +45,7 @@ public class SecurityConfig {
                 .formLogin(form -> form
                         .loginPage("/login")
                         .successHandler((request, response, authentication) -> {
-
+                            System.out.println("===== SUCCESS HANDLER =====");
                             boolean isAdmin = authentication.getAuthorities()
                                     .stream()
                                     .anyMatch(authority ->
