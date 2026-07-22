@@ -25,8 +25,8 @@ public class SecurityConfig {
                         .requestMatchers(
                                 "/",
                                 "/login",
-                                "/member/**",     // 👈 [수정 1] /member/하위의 모든 경로(중복확인 등) 허용
-                                "/api/**",        // 👈 [추가 2] 혹시 fetch 경로가 /api/ 로 시작할 경우 대비
+                                "/member/**",
+                                "/api/**",
                                 "/css/**",
                                 "/js/**",
                                 "/images/**",
@@ -41,7 +41,20 @@ public class SecurityConfig {
 
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/")
+                        .successHandler((request, response, authentication) -> {
+
+                            boolean isAdmin = authentication.getAuthorities()
+                                    .stream()
+                                    .anyMatch(authority ->
+                                            authority.getAuthority().equals("ROLE_ADMIN"));
+
+                            if (isAdmin) {
+                                response.sendRedirect("/admin");
+                            } else {
+                                response.sendRedirect("/");
+                            }
+
+                        })
                         .permitAll()
                 )
                 .logout(logout -> logout
