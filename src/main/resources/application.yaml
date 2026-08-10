@@ -4,15 +4,16 @@ server:
 spring:
   datasource:
     # 로컬용
-    url: jdbc:mysql://localhost:3306/layer?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: root
-    password: test1234
-    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    #url: jdbc:mysql://localhost:3306/layer?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    #username: root
+    #password: test1234
+    #driver-class-name: com.mysql.cj.jdbc.Driver
 
     # Railway용
-    # url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
-    # username: ${MYSQLUSER}
-    # password: ${MYSQLPASSWORD}
+     url: jdbc:mysql://${MYSQLHOST}:${MYSQLPORT}/${MYSQLDATABASE}?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+     username: ${MYSQLUSER}
+     password: ${MYSQLPASSWORD}
 
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
