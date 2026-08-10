@@ -3,18 +3,23 @@
 
 <head>
 
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <meta charset="UTF-8">
+
 
     <title>주문관리</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
 
 </head>
 
 <body>
+<div th:replace="~{fragments/admin-sidebar :: sidebar}"></div>
 
+<div class="admin-main">
 <div th:replace="~{fragments/admin-header :: header}"></div>
-
+    <main class="content">
 <h1>주문관리</h1>
 
 <table border="1">
@@ -60,7 +65,8 @@
     </tr>
 
 </table>
-
+    </main>
+</div>
 </body>
 
 </html>

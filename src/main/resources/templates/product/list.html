@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>LAYER | SHOP</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/shop.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="shop-page">
+
+    <!-- SHOP TITLE -->
+    <section class="shop-hero">
+
+        <h1>SHOP</h1>
+
+        <p>Discover Our Collection</p>
+
+    </section>
+
+    <!-- BRAND MENU -->
+    <section class="brand-menu">
+
+        <a th:href="@{/list}" class="active">
+
+            ALL
+
+        </a>
+
+        <a th:each="brand : ${brands}"
+           th:href="@{/brands/{brand}(brand=${brand})}"
+           th:text="${brand}">
+
+        </a>
+
+    </section>
+
+    <form class="sort-form"
+          method="get"
+          th:action="@{/list}">
+
+        <select name="sort"
+                onchange="this.form.submit()">
+
+            <option value="new">Newest</option>
+            <option value="high">Price ↑</option>
+            <option value="low">Price ↓</option>
+
+        </select>
+
+    </form>
+
+    <!-- PRODUCT GRID -->
+    <section class="shop-grid">
+
+        <article class="shop-card"
+                 th:each="product : ${products}">
+
+            <a th:href="@{/product/{id}(id=${product.id})}">
+
+                <div class="shop-image">
+
+                    <img th:src="@{'/upload/' + ${product.image}}"
+                         th:alt="${product.name}">
+
+                </div>
+
+                <div class="shop-info">
+
+                    <span class="brand"
+                          th:text="${product.brand}">
+                    </span>
+
+                    <h3 th:text="${product.name}">
+                    </h3>
+
+                    <strong th:text="${#numbers.formatInteger(product.price,3,'COMMA')} + '원'">
+                    </strong>
+
+                </div>
+
+            </a>
+
+        </article>
+
+    </section>
+
+</main>
+
+
+</body>
+
+</html>

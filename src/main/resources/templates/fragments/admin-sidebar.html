@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div class="admin-sidebar" th:fragment="sidebar">
+
+    <div class="sidebar-logo">
+        <h2>LAYER</h2>
+        <span>ADMIN SYSTEM</span>
+    </div>
+
+    <nav class="sidebar-menu">
+
+        <a th:href="@{/admin}"
+           th:classappend="${menu == 'dashboard'} ? 'active' : ''">
+
+            <i class="bi bi-grid-1x2-fill"></i>
+            <span>Dashboard</span>
+
+        </a>
+
+        <a th:href="@{/admin/product}"
+           th:classappend="${menu == 'product'} ? 'active' : ''">
+
+            <i class="bi bi-box-seam"></i>
+            <span>상품관리</span>
+
+        </a>
+
+        <a th:href="@{/admin/member}"
+           th:classappend="${menu == 'member'} ? 'active' : ''">
+
+            <i class="bi bi-people"></i>
+            <span>회원관리</span>
+
+        </a>
+
+        <a th:href="@{/admin/order}"
+           th:classappend="${menu == 'order'} ? 'active' : ''">
+
+            <i class="bi bi-bag-check"></i>
+            <span>주문관리</span>
+
+        </a>
+
+    </nav>
+
+    <div class="sidebar-bottom">
+
+        <a th:href="@{/}">
+            <i class="bi bi-shop"></i>
+            <span>쇼핑몰 이동</span>
+        </a>
+
+    </div>
+
+</div>
+
+</html>

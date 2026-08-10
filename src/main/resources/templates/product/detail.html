@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      lang="ko">
 
 <head>
 
@@ -11,30 +13,6 @@
 </head>
 <div th:replace="~{fragments/header :: header}"></div>
 <body>
-
-<header>
-
-    <nav>
-
-        <div class="logo">
-            <a th:href="@{/}" class="logo-link">
-                LAYER
-            </a>
-        </div>
-
-        <ul>
-
-            <li><a href="/">HOME</a></li>
-
-            <li>SHOP</li>
-
-            <li>LOGIN</li>
-
-        </ul>
-
-    </nav>
-
-</header>
 
 <section class="detail-container">
 
@@ -80,15 +58,21 @@
 
         <br>
 
-        <a th:href="@{/admin/product/edit/{id}(id=${product.id})}">
-            상품 수정
-        </a>
+        <th:block sec:authorize="hasRole('ADMIN')">
 
-        <br><br>
+            <br>
 
-        <a th:href="@{/admin/product/delete/{id}(id=${product.id})}">
-            상품 삭제
-        </a>
+            <a th:href="@{/admin/product/edit/{id}(id=${product.id})}">
+                상품 수정
+            </a>
+
+            <br><br>
+
+            <a th:href="@{/admin/product/delete/{id}(id=${product.id})}">
+                상품 삭제
+            </a>
+
+        </th:block>
 
     </div>
 

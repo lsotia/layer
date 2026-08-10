@@ -1,35 +1,41 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
-<header class="admin-header">
+<html xmlns:th="http://www.thymeleaf.org">
+<header class="admin-header" th:fragment="header">
 
-    <div class="admin-logo">
+    <div class="header-left">
 
-        <a th:href="@{/admin}">
-            LAYER Admin
-        </a>
+        <h3>Dashboard</h3>
 
     </div>
 
-    <nav>
+    <div class="header-right">
 
-        <a th:href="@{/admin/product}">
-            상품
-        </a>
+        <button class="header-icon">
 
-        <a th:href="@{/admin/member}">
-            회원
-        </a>
+            <i class="bi bi-bell"></i>
 
-        <a th:href="@{/admin/order}">
-            주문
-        </a>
+        </button>
 
-        <a th:href="@{/}">
-            쇼핑몰
-        </a>
+        <div class="admin-user">
 
-    </nav>
+            <div class="avatar">
+
+                A
+
+            </div>
+
+            <div>
+
+                <strong>Administrator</strong>
+
+                <p>Layer Mall</p>
+
+            </div>
+
+        </div>
+
+    </div>
 
 </header>
+
 </html>

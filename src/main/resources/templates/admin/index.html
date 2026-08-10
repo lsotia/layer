@@ -2,70 +2,192 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="ko">
 
 <head>
-
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <meta charset="UTF-8">
 
     <title>관리자 대시보드</title>
 
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/admin.css">
 
 </head>
 
-<body class="admin-page">
+<body>
 
-<div th:replace="~{fragments/admin-header :: header}"></div>
+<!-- Sidebar -->
+<div th:replace="~{fragments/admin-sidebar :: sidebar}"></div>
 
-<div class="admin-container">
+<!-- Main -->
+<div class="admin-main">
 
-    <div class="admin-title">
+    <!-- Header -->
+    <div th:replace="~{fragments/admin-header :: header}"></div>
 
-        <h1>관리자 대시보드</h1>
+    <!-- Content -->
+    <main class="content">
 
-        <p>
-            LAYER 관리 시스템
-        </p>
+        <!-- 제목 -->
+        <section class="page-title">
 
-    </div>
+            <div>
 
-    <div class="admin-grid">
+                <h1>Dashboard</h1>
 
-        <a th:href="@{/admin/product}" class="admin-card">
+                <p>쇼핑몰 운영 현황을 한눈에 확인하세요.</p>
 
-            <div class="icon">📦</div>
+            </div>
 
-            <h2>상품 관리</h2>
+        </section>
 
-            <p>상품 등록 / 수정 / 삭제</p>
+        <!-- KPI -->
+        <section class="dashboard-summary">
 
-            <span>관리하기 →</span>
+            <div class="summary-card">
 
-        </a>
+                <span>총 상품</span>
 
-        <a th:href="@{/admin/member}" class="admin-card">
+                <strong th:text="${productCount}">0</strong>
 
-            <div class="icon">👥</div>
+            </div>
 
-            <h2>회원 관리</h2>
+            <div class="summary-card">
 
-            <p>회원 조회 및 삭제</p>
+                <span>총 회원</span>
 
-            <span>관리하기 →</span>
+                <strong th:text="${memberCount}">0</strong>
 
-        </a>
+            </div>
 
-        <a th:href="@{/admin/order}" class="admin-card">
+            <div class="summary-card">
 
-            <div class="icon">🛒</div>
+                <span>오늘 주문</span>
 
-            <h2>주문 관리</h2>
+                <strong th:text="${todayOrderCount}">0</strong>
 
-            <p>주문 상태 변경</p>
+            </div>
 
-            <span>관리하기 →</span>
+            <div class="summary-card">
 
-        </a>
+                <span>오늘 매출</span>
 
-    </div>
+                <strong th:text="${todaySales}">₩0</strong>
+
+            </div>
+
+        </section>
+
+        <!-- 아래 영역 -->
+        <section class="dashboard-grid">
+
+            <!-- 최근 주문 -->
+            <div class="dashboard-panel">
+
+                <div class="panel-header">
+
+                    <h2>최근 주문</h2>
+
+                    <a th:href="@{/admin/order}">
+                        전체보기 →
+                    </a>
+
+                </div>
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>주문번호</th>
+
+                        <th>회원</th>
+
+                        <th>주문일</th>
+
+                        <th>상태</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="order : ${recentOrders}">
+
+                        <td th:text="${order.id}"></td>
+
+                        <td th:text="${order.member.username}"></td>
+
+                        <td th:text="${order.orderDate}"></td>
+
+                        <td>
+
+                            <span class="status"
+                                  th:text="${order.status}">
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <!-- 재고 부족 -->
+            <div class="dashboard-panel">
+
+                <div class="panel-header">
+
+                    <h2>재고 부족 상품</h2>
+
+                </div>
+
+                <table>
+
+                    <thead>
+
+                    <tr>
+
+                        <th>상품명</th>
+
+                        <th>브랜드</th>
+
+                        <th>재고</th>
+
+                    </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                    <tr th:each="product : ${lowStockProducts}">
+
+                        <td th:text="${product.name}"></td>
+
+                        <td th:text="${product.brand}"></td>
+
+                        <td>
+
+                            <span class="stock-warning"
+                                  th:text="${product.stock}">
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </div>
 

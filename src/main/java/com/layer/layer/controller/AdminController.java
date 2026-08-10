@@ -18,13 +18,17 @@ public class AdminController {
     private final OrderService orderService;
 
     @GetMapping
-    public String admin() {
+    public String admin(Model model) {
+
+        model.addAttribute("menu", "dashboard");
+
         return "admin/index";
     }
 
     @GetMapping("/product")
     public String product(Model model){
 
+        model.addAttribute("menu", "product");
         model.addAttribute("products",
                 productService.getProducts());
 
@@ -34,6 +38,7 @@ public class AdminController {
     @GetMapping("/member")
     public String member(Model model){
 
+        model.addAttribute("menu", "member");
         model.addAttribute("members",
                 memberService.getMembers());
 
@@ -43,17 +48,18 @@ public class AdminController {
     @GetMapping("/order")
     public String order(Model model){
 
+        model.addAttribute("menu", "order");
         model.addAttribute("orders",
                 orderService.getOrders());
 
         return "admin/order";
-
     }
 
     @GetMapping("/order/{id}")
     public String orderDetail(@PathVariable Long id,
                               Model model){
 
+        model.addAttribute("menu", "order");
         model.addAttribute("order",
                 orderService.getOrder(id));
 
@@ -67,7 +73,6 @@ public class AdminController {
         orderService.changeStatus(id, status);
 
         return "redirect:/admin/order/" + id;
-
     }
 
     @PostMapping("/member/delete/{id}")
@@ -76,9 +81,8 @@ public class AdminController {
         memberService.deleteMember(id);
 
         return "redirect:/admin/member";
-
     }
-
-
-
 }
+
+
+

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>NEW</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<section class="products">
+
+    <h2>NEW ARRIVALS</h2>
+
+    <div class="product-grid">
+
+        <div class="product-card"
+             th:each="product : ${products}">
+
+            <a class="product-link"
+               th:href="@{/product/{id}(id=${product.id})}">
+
+                <div class="product-image">
+
+                    <img th:src="@{'/upload/' + ${product.image}}">
+
+                </div>
+
+                <h3 th:text="${product.name}"></h3>
+
+                <p th:text="${product.brand}"></p>
+
+                <strong th:text="${product.price + '원'}"></strong>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

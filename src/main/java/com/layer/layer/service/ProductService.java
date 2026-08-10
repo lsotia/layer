@@ -3,7 +3,9 @@ package com.layer.layer.service;
 import com.layer.layer.dto.ProductCreateDto;
 import com.layer.layer.entity.Product;
 import com.layer.layer.repository.ProductRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 /* private final ProductRepository productRepository;
@@ -70,6 +72,29 @@ public class ProductService {
     public List<Product> search(String keyword){
         return productRepository.findByNameContainingOrBrandContaining(keyword,keyword);
     }
+
+    public List<Product> findAll(){
+
+        return productRepository.findAll();
+
+    }
+
+    public List<String> findBrands() {
+        return productRepository.findDistinctBrands();
+    }
+
+    public List<Product> findByBrand(String brand) {
+        return productRepository.findByBrand(brand);
+    }
+    public List<Product> findNewest(){
+
+        return productRepository.findAllByOrderByIdDesc(
+                PageRequest.of(0,12)
+        );
+
+    }
+
+
 
 }
 

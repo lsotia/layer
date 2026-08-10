@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>LAYER | Brands</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/shop.css">
+
+</head>
+
+<body>
+
+<div th:replace="~{fragments/header :: header}"></div>
+
+<main class="shop-page">
+
+    <section class="shop-hero">
+
+        <h1>BRANDS</h1>
+
+        <p>Discover Every Brand</p>
+
+    </section>
+
+    <section class="brand-list">
+
+        <a class="brand-item"
+
+           th:each="brand : ${brands}"
+
+           th:href="@{/brands/{brand}(brand=${brand})}">
+
+            <span th:text="${brand}">
+                NIKE
+            </span>
+
+            <span class="arrow">
+                →
+            </span>
+
+        </a>
+
+    </section>
+
+</main>
+
+</body>
+
+</html>

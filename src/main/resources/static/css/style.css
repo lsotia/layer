@@ -315,173 +315,288 @@ nav ul li a:hover{
 
 
 
-/* ===========================
-   ADMIN HEADER
-=========================== */
+/* ==========================================================================
+   11. Login Page Full Redesign (선택자 버그 수정 및 풀 리디자인)
+   ========================================================================== */
 
-.admin-header{
-
-    background:white;
-
-    border-bottom:1px solid #eee;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:18px 60px;
-
+/* 상단 LOGIN 타이틀 */
+h1 {
+  text-align: center;
+  margin: 60px auto 28px auto;
+  font-size: 2.2rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--accent-black, #0f172a);
 }
 
-.admin-logo a{
-
-    font-size:28px;
-
-    font-weight:700;
-
-    color:#111;
-
-    text-decoration:none;
-
+/* 로그인 폼 전체를 중앙 카드 박스로 전환 */
+form[action*="login"] {
+  width: 100% !important;
+  max-width: 420px !important;
+  margin: 0 auto 100px auto !important;
+  padding: 44px 36px !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
 }
 
-.admin-header nav{
-
-    display:flex;
-
-    gap:35px;
-
+/* HTML 안의 지저분한 <br> 태그 전부 감추기 */
+form[action*="login"] br {
+  display: none !important;
 }
 
-.admin-header nav a{
-
-    color:#555;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    transition:.2s;
-
+/* 라벨 ("아이디", "비밀번호") */
+form[action*="login"] p {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  margin-top: 18px !important;
+  margin-bottom: 8px !important;
+  letter-spacing: -0.01em !important;
 }
 
-.admin-header nav a:hover{
-
-    color:#2563eb;
-
+form[action*="login"] p:first-of-type {
+  margin-top: 0 !important;
 }
 
-/* ===========================
-   ADMIN DASHBOARD
-=========================== */
-
-.admin-page{
-    background:#f5f7fb;
-    min-height:100vh;
+/* 아이디, 비밀번호 입력 필드 */
+form[action*="login"] input[type="text"],
+form[action*="login"] input[type="password"] {
+  width: 100% !important;
+  height: 50px !important;
+  padding: 0 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  background-color: #f8fafc !important;
+  font-size: 0.95rem !important;
+  color: #0f172a !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
 }
 
-.admin-container{
-
-    max-width:1200px;
-
-    margin:60px auto;
-
-    padding:20px;
-
+/* 입력 필드 클릭/포커스 시 반응 */
+form[action*="login"] input[type="text"]:focus,
+form[action*="login"] input[type="password"]:focus {
+  background-color: #ffffff !important;
+  border-color: #0f172a !important;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1) !important;
 }
 
-.admin-title{
-
-    text-align:center;
-
-    margin-bottom:50px;
-
+/* 로그인 버튼 선명하게 선언 */
+form[action*="login"] button[type="submit"] {
+  width: 100% !important;
+  height: 52px !important;
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  margin-top: 32px !important;
+  letter-spacing: 1px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15) !important;
+  display: block !important;
 }
 
-.admin-title h1{
-
-    font-size:40px;
-
-    font-weight:700;
-
-    color:#222;
-
+form[action*="login"] button[type="submit"]:hover {
+  background-color: #1e293b !important;
+  transform: translateY(-1px) !important;
 }
 
-.admin-title p{
 
-    color:#777;
 
-    margin-top:10px;
+/* ==========================================================================
+   12. Signup Page Full Redesign (회원가입 전용)
+   ========================================================================== */
 
+/* 상단 회원가입 타이틀 */
+body > h1 {
+  text-align: center;
+  margin: 60px auto 20px auto;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #0f172a;
 }
 
-.admin-grid{
+/* 서버 에러 메시지 (<p th:if="${error}">) */
+p[style*="color:red"],
+p[style*="color: red"] {
+  max-width: 420px;
+  margin: 0 auto 20px auto !important;
+  padding: 12px 16px;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  color: #ef4444 !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  text-align: center;
+}
+
+/* 회원가입 폼 중앙 카드 컨테이너 */
+form[action*="/signup"] {
+  width: 100% !important;
+  max-width: 440px !important;
+  margin: 0 auto 100px auto !important;
+  padding: 44px 36px !important;
+  background-color: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.08), 0 8px 10px -6px rgba(0, 0, 0, 0.01) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  box-sizing: border-box !important;
+}
+
+/* HTML 내 불필요한 <br> 태그 숨기기 */
+form[action*="/signup"] br {
+  display: none !important;
+}
+
+/* 입력 필드 라벨 (<p> 태그) */
+form[action*="/signup"] > p {
+  font-size: 0.85rem !important;
+  font-weight: 700 !important;
+  color: #475569 !important;
+  margin-top: 18px !important;
+  margin-bottom: 8px !important;
+  letter-spacing: -0.01em !important;
+}
+
+form[action*="/signup"] > p:first-of-type {
+  margin-top: 0 !important;
+}
+
+/* 입력창 (아이디, 비밀번호, 이메일) */
+form[action*="/signup"] input[type="text"],
+form[action*="/signup"] input[type="password"],
+form[action*="/signup"] input[type="email"] {
+  width: 100% !important;
+  height: 48px !important;
+  padding: 0 16px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  background-color: #f8fafc !important;
+  font-size: 0.95rem !important;
+  color: #0f172a !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+  transition: all 0.2s ease !important;
+}
+
+/* 입력창 포커스 시 효과 */
+form[action*="/signup"] input:focus {
+  background-color: #ffffff !important;
+  border-color: #0f172a !important;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.1) !important;
+}
+
+/* 중복확인 버튼 (아이디/이메일 옆) */
+form[action*="/signup"] button[type="button"] {
+  width: 100% !important;
+  height: 42px !important;
+  margin-top: 8px !important;
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  font-size: 0.85rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  transition: all 0.2s ease !important;
+}
+
+form[action*="/signup"] button[type="button"]:hover {
+  background-color: #f8fafc !important;
+  border-color: #0f172a !important;
+}
+
+/* 중복확인 결과 메시지 디스플레이 (JS 출력 영역) */
+#usernameResult,
+#emailResult {
+  font-size: 0.8rem !important;
+  margin-top: 6px !important;
+  font-weight: 600 !important;
+  min-height: 18px;
+}
+
+/* 회원가입 제출 버튼 */
+form[action*="/signup"] button[type="submit"] {
+  width: 100% !important;
+  height: 52px !important;
+  background-color: #0f172a !important;
+  color: #ffffff !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  margin-top: 28px !important;
+  letter-spacing: 1px !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15) !important;
+}
+
+form[action*="/signup"] button[type="submit"]:hover {
+  background-color: #1e293b !important;
+  transform: translateY(-1px) !important;
+}
+
+
+/* =========================
+   BRANDS
+========================= */
+
+.brand-grid{
 
     display:grid;
 
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
 
-    gap:30px;
+    gap:25px;
 
 }
 
-.admin-card{
+.brand-card{
 
     background:white;
 
     border-radius:18px;
 
-    padding:40px;
+    height:120px;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
 
     text-decoration:none;
 
     color:#222;
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    font-size:22px;
+
+    font-weight:700;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.06);
 
     transition:.25s;
 
 }
 
-.admin-card:hover{
+.brand-card:hover{
 
     transform:translateY(-8px);
 
-    box-shadow:0 18px 35px rgba(37,99,235,.15);
-
-}
-
-.admin-card .icon{
-
-    font-size:50px;
-
-    margin-bottom:20px;
-
-}
-
-.admin-card h2{
-
-    font-size:28px;
-
-    margin-bottom:12px;
-
-}
-
-.admin-card p{
-
-    color:#777;
-
-    margin-bottom:30px;
-
-}
-
-.admin-card span{
-
-    color:#2563eb;
-
-    font-weight:700;
+    box-shadow:0 15px 35px rgba(0,0,0,.12);
 
 }

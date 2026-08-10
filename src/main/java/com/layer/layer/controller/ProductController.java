@@ -1,6 +1,7 @@
 package com.layer.layer.controller;
 
 import com.layer.layer.dto.ProductCreateDto;
+import com.layer.layer.entity.Product;
 import com.layer.layer.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,7 +30,7 @@ public class ProductController {
 
         productService.save(dto);
 
-        return "redirect:/";
+        return "redirect:/admin/product";
     }
 
     @GetMapping("/product/{id}")
@@ -47,13 +50,13 @@ public class ProductController {
     public String delete(@PathVariable Long id){
 
         productService.delete(id);
-        return "redirect:/";
+        return "redirect:/admin/product";
     }
 
     @PostMapping("/admin/product/edit/{id}")
     public String edit(@PathVariable Long id,ProductCreateDto dto){
         productService.update(id,dto);
-        return "redirect:/product/"+ id;
+        return "redirect:/admin/product";
     }
 
     @GetMapping("/search")
@@ -68,6 +71,59 @@ public class ProductController {
         return "search";
     }
 
+    @GetMapping("/list")
+    public String list(Model model){
+
+        List<Product> products = productService.findAll();
+
+        model.addAttribute("products", products);
+
+        model.addAttribute("brands",
+                productService.findBrands());
+
+        model.addAttribute("count",
+                products.size());
+
+        return "product/list";
+    }
+
+    @GetMapping("/brands")
+    public String brands(Model model){
+
+        model.addAttribute("brands",
+                productService.findBrands());
+
+        return "product/brands";
+    }
+
+    @GetMapping("/brands/{brand}")
+    public String brand(@PathVariable String brand,
+                        Model model){
+
+        model.addAttribute("brand", brand);
+
+        model.addAttribute("products",
+                productService.findByBrand(brand));
+
+        model.addAttribute("brands",
+                productService.findBrands());
+
+        model.addAttribute("count",
+                productService.findByBrand(brand).size());
+
+        return "product/brand";
+    }
+    @GetMapping("/new")
+    public String newest(Model model){
+
+        model.addAttribute("products",
+                productService.findNewest());
+
+        model.addAttribute("count",
+                productService.findNewest().size());
+
+        return "product/new";
+    }
 
 
 
