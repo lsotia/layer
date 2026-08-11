@@ -600,3 +600,17 @@ form[action*="/signup"] button[type="submit"]:hover {
     box-shadow:0 15px 35px rgba(0,0,0,.12);
 
 }
+
+.hero-video {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-video video {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
