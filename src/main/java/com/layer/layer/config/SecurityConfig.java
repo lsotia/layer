@@ -14,52 +14,60 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http
-
                 .csrf(csrf -> csrf.disable())
-
-
 
                 .authorizeHttpRequests(auth -> auth
 
-                        // 관리자만
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-
+                        .requestMatchers("/admin/**")
+                        .hasRole("ADMIN")
 
                         .requestMatchers(
                                 "/",
                                 "/login",
-                                "/member/**",
-                                "/api/**",
+                                "/signup",
+
                                 "/css/**",
                                 "/js/**",
                                 "/images/**",
+                                "/videos/**",
+
                                 "/product/**",
                                 "/brands",
-                                "/search"
-                        ).permitAll()
+                                "/brands/**",
+                                "/search",
+                                "/list",
+                                "/new",
 
-                        // 나머지는 로그인 필요
-                        .anyRequest().authenticated()
+                                "/api/**"
+                        )
+                        .permitAll()
+
+                        .anyRequest()
+                        .authenticated()
                 )
 
                 .formLogin(form -> form
                         .loginPage("/login")
+
                         .successHandler((request, response, authentication) -> {
-                            System.out.println("===== SUCCESS HANDLER =====");
+
                             boolean isAdmin = authentication.getAuthorities()
                                     .stream()
                                     .anyMatch(authority ->
-                                            authority.getAuthority().equals("ROLE_ADMIN"));
+                                            authority.getAuthority()
+                                                    .equals("ROLE_ADMIN")
+                                    );
 
                             if (isAdmin) {
                                 response.sendRedirect("/admin");
                             } else {
                                 response.sendRedirect("/");
                             }
-
                         })
+
                         .permitAll()
                 )
+
                 .logout(logout -> logout
                         .logoutSuccessUrl("/")
                 );
@@ -67,10 +75,7 @@ public class SecurityConfig {
         return http.build();
     }
 
-    /*DI (Dependency Injection) */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }
-
-}
+    }}
