@@ -25,6 +25,7 @@ public class SecurityConfig {
                                 "/",
                                 "/login",
                                 "/signup",
+                                "/member/signup",
 
                                 "/css/**",
                                 "/js/**",
@@ -78,4 +79,5 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
-    }}
+    }
+}
